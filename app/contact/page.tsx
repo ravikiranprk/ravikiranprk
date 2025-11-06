@@ -41,7 +41,7 @@ export default function ContactPage() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="text-4xl md:text-6xl font-extrabold text-center mb-14"
+                className="text-4xl md:text-6xl font-extrabold text-center mb-14 text-gray-800"
             >
                 Get In{" "}
                 <span className="bg-linear-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent">

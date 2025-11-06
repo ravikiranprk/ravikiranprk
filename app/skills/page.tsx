@@ -75,7 +75,7 @@ export default function SkillsPage() {
     return (
         <main className="min-h-screen bg-[#fff7ef] p-6 flex justify-center items-center mt-6">
             <div className="container bg-[#fff7ef] rounded-2xl p-10">
-                <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-500 via-indigo-600 to-indigo-800 bg-clip-text text-transparent mb-4">
+                <h1 className="text-4xl font-bold bg-linear-to-r from-blue-500 via-indigo-600 to-indigo-800 bg-clip-text text-transparent mb-4">
                     Skills
                 </h1>
                 <p className="text-lg text-gray-700 mb-10">My Technical Skills</p>
