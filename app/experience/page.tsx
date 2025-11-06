@@ -7,7 +7,7 @@ const experiences = [
         role: "Fullstack Trainer",
         company: "Freelance (Prepinsta)",
         duration: "May 2025 - September 2025",
-        desc: "Developed and delivered student-centric training sessions on fullstack application development using modern JavaScript frameworks."
+        desc: "Developed and delivered student-centric training sessions on fullstack application development using modern Java & JavaScript Frameworks."
     },
     {
         role: "Subject Matter Expert (Web Development)",
@@ -19,7 +19,7 @@ const experiences = [
         role: "Fullstack Trainer",
         company: "Freelance (Prespinsta)",
         duration: "November 2022 - July 2023",
-        desc: "Developed and delivered student-centric training sessions on fullstack application development using modern JavaScript frameworks."
+        desc: "Developed and delivered student-centric training sessions on fullstack application development using modern JavaScript & Python frameworks."
     },
     {
         role: "Programming Trainer",
