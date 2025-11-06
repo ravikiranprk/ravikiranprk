@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import {
     FaHtml5, FaCss3Alt, FaReact, FaNodeJs, FaJava,
     FaGit, FaGithub
@@ -53,29 +57,55 @@ const skills = [
 ];
 
 export default function SkillsPage() {
+    const [progress, setProgress] = useState(skills.map(() => 0));
+
+    // Animate skill levels once component mounts
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setProgress((prev) =>
+                prev.map((val, i) => {
+                    if (val < skills[i].level) return val + 2;
+                    return skills[i].level;
+                })
+            );
+        }, 30);
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <main className="min-h-screen bg-[#fff7ef] p-6 flex justify-center items-center mt-6">
             <div className="container bg-[#fff7ef] rounded-2xl p-10">
-                <h1 className="text-4xl font-bold bg-linear-to-r from-blue-500 via-indigo-600 to-indigo-800 bg-clip-text text-transparent mb-4">Skills</h1>
+                <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-500 via-indigo-600 to-indigo-800 bg-clip-text text-transparent mb-4">
+                    Skills
+                </h1>
                 <p className="text-lg text-gray-700 mb-10">My Technical Skills</p>
 
                 <div className="grid gap-6 md:grid-cols-2">
-                    {skills.map((skill) => (
-                        <div key={skill.name}>
+                    {skills.map((skill, index) => (
+                        <motion.div
+                            key={skill.name}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.05 }}
+                        >
                             <div className="flex justify-between items-center mb-2">
                                 <div className="flex items-center gap-3 text-gray-900 font-medium">
                                     {skill.icon} {skill.name}
                                 </div>
-                                <span className="text-sm font-medium text-gray-600">{skill.level}%</span>
+                                <span className="text-sm font-medium text-gray-600">
+                                    {progress[index]}%
+                                </span>
                             </div>
 
                             <div className="w-full h-3 bg-[#e9dfcf] rounded-full overflow-hidden">
-                                <div
-                                    className="h-full bg-gray-800 rounded-full transition-all duration-700"
-                                    style={{ width: `${skill.level}%` }}
-                                ></div>
+                                <motion.div
+                                    className="h-full bg-gray-800 rounded-full"
+                                    initial={{ width: 0 }}
+                                    animate={{ width: `${progress[index]}%` }}
+                                    transition={{ duration: 0.7, ease: "easeOut" }}
+                                />
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>

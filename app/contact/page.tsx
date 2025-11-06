@@ -2,8 +2,38 @@
 
 import { motion } from "framer-motion";
 import { Mail, Github, Linkedin, MapPin, Send } from "lucide-react";
+import { useRef, useState } from "react";
+
+import emailjs from "@emailjs/browser";
 
 export default function ContactPage() {
+    const formRef = useRef(null);
+    const [loading, setLoading] = useState(false);
+
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [subject, setSubject] = useState("");
+    const [message, setMessage] = useState("");
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        
+        setLoading(true);
+
+        try {
+            await emailjs.sendForm(
+                process.env.NEXT_PUBLIC_PORTFOLIO_EMAILJS_SERVICE_ID as string,
+                process.env.NEXT_PUBLIC_PORTFOLIO_EMAILJS_TEMPLATE_ID as string,
+                formRef.current || "",
+                process.env.NEXT_PUBLIC_PORTFOLIO_EMAILJS_PUBLIC_KEY as string
+            )
+        } catch (error) {
+            console.log("EmailJS Error", error);
+        } finally {
+            setLoading(false);
+        }
+    }
+
     return (
         <section className="w-full min-h-screen bg-white/60 backdrop-blur-xl py-24 px-6 md:px-20 flex flex-col items-center">
             {/* Heading */}
@@ -34,10 +64,10 @@ export default function ContactPage() {
 
                     <div className="flex flex-col gap-5">
                         <a
-                            href="mailto:ravikiranprk@gmail.com"
+                            href="mailto:ravikiranprk160@gmail.com"
                             className="flex items-center gap-3 text-gray-800 hover:text-blue-600 transition"
                         >
-                            <Mail size={22} /> ravikiranprk@gmail.com
+                            <Mail size={22} /> ravikiranprk160@gmail.com
                         </a>
                         <a
                             href="https://github.com/ravikiranprk"
@@ -47,14 +77,14 @@ export default function ContactPage() {
                             <Github size={22} /> github.com/ravikiranprk
                         </a>
                         <a
-                            href="https://linkedin.com/in/ravikiranprk"
+                            href="https://www.linkedin.com/in/ravi-kiran-palaparthi-ab7934221/"
                             target="_blank"
                             className="flex items-center gap-3 text-gray-800 hover:text-blue-600 transition"
                         >
-                            <Linkedin size={22} /> linkedin.com/in/ravikiranprk
+                            <Linkedin size={22} /> linkedin.com/in/ravi-kiran-palaparthi-ab7934221/
                         </a>
                         <div className="flex items-center gap-3 text-gray-800">
-                            <MapPin size={22} /> India
+                            <MapPin size={22} /> Guntur, India
                         </div>
                     </div>
                 </motion.div>
@@ -65,6 +95,8 @@ export default function ContactPage() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.7 }}
                     className="bg-white/50 border border-gray-200 backdrop-blur-xl rounded-2xl p-8 shadow-[0_10px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_15px_45px_rgba(59,130,246,0.25)] transition-all flex flex-col gap-6"
+                    ref={formRef}
+                    onSubmit={handleSubmit}
                 >
                     <h2 className="text-2xl font-bold text-gray-900 mb-2">
                         Send a Message
@@ -75,11 +107,15 @@ export default function ContactPage() {
                             type="text"
                             placeholder="Your Name"
                             className="border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                         />
                         <input
                             type="email"
                             placeholder="Your Email"
                             className="border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
 
@@ -87,19 +123,24 @@ export default function ContactPage() {
                         type="text"
                         placeholder="Subject"
                         className="border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        value={subject}
+                        onChange={(e) => setSubject(e.target.value)}
                     />
 
                     <textarea
+                        rows={4}
                         placeholder="Your Message"
-                        rows={5}
                         className="border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
                     />
 
                     <button
                         type="submit"
+                        disabled={loading}
                         className="cursor-pointer flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition-all"
                     >
-                        Send Message <Send size={18} />
+                        {loading ? <span>Sending...</span> : <span className="flex gap-3 items-center justify-center">Send Message <Send size={18} /> </span>}
                     </button>
                 </motion.form>
             </div>
