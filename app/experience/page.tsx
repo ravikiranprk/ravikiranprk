@@ -16,12 +16,6 @@ const experiences = [
         desc: "I work on developing and maintaining the frontend and backend of the company's web applications using modern JavaScript frameworks."
     },
     {
-        role: "Fullstack Trainer",
-        company: "Freelance (Prespinsta)",
-        duration: "November 2022 - July 2023",
-        desc: "Developed and delivered student-centric training sessions on fullstack application development using modern JavaScript & Python frameworks."
-    },
-    {
         role: "Programming Trainer",
         company: "Informatics",
         duration: "April 2022 - June 2022",
