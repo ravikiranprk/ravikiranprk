@@ -116,6 +116,7 @@ export default function ContactPage() {
                             className="border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
+                            required
                         />
                         <input
                             type="email"
@@ -123,6 +124,7 @@ export default function ContactPage() {
                             className="border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            required
                         />
                     </div>
 
@@ -132,6 +134,7 @@ export default function ContactPage() {
                         className="border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                         value={subject}
                         onChange={(e) => setSubject(e.target.value)}
+                        required
                     />
 
                     <textarea
@@ -140,6 +143,7 @@ export default function ContactPage() {
                         className="border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
+                        required
                     />
 
                     <button
