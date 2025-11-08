@@ -27,6 +27,11 @@ export default function ContactPage() {
                 formRef.current || "",
                 process.env.NEXT_PUBLIC_PORTFOLIO_EMAILJS_PUBLIC_KEY as string
             )
+            setName("");
+            setEmail("");
+            setSubject("");
+            setMessage("");
+            setLoading(false);
         } catch (error) {
             console.log("EmailJS Error", error);
         } finally {
