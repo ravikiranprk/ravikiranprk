@@ -7,7 +7,7 @@ import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 
 export default function ContactPage() {
-    const formRef = useRef(null);
+    const formRef = useRef<HTMLFormElement | null>(null);
     const [loading, setLoading] = useState(false);
 
     const [name, setName] = useState("");
@@ -21,17 +21,19 @@ export default function ContactPage() {
         setLoading(true);
 
         try {
-            await emailjs.sendForm(
+            const result = await emailjs.sendForm(
                 process.env.NEXT_PUBLIC_PORTFOLIO_EMAILJS_SERVICE_ID as string,
                 process.env.NEXT_PUBLIC_PORTFOLIO_EMAILJS_TEMPLATE_ID as string,
-                formRef.current || "",
+                formRef.current ?? "",
                 process.env.NEXT_PUBLIC_PORTFOLIO_EMAILJS_PUBLIC_KEY as string
             )
+            console.log(result.text);
+
             setName("");
             setEmail("");
             setSubject("");
             setMessage("");
-            setLoading(false);
+            if (formRef.current) formRef.current.reset();
         } catch (error) {
             console.log("EmailJS Error", error);
         } finally {
