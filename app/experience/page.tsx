@@ -4,21 +4,27 @@ import { motion } from "framer-motion";
 
 const experiences = [
     {
+        role: "Associate Trainer",
+        company: "FACE Prep",
+        duration: "December 2025 - March 2026 (Full-time)",
+        desc: "Delivered student-centric training sessions on Technical and Aptitude subjects. Improved the performance of each student in understanding programming concepts as well as students' understanding in aptitude & reasoning skills."
+    },
+    {
         role: "Fullstack Trainer",
         company: "Freelance (Prepinsta)",
-        duration: "May 2025 - September 2025",
+        duration: "May 2025 - September 2025 (Full-time)",
         desc: "Developed and delivered student-centric training sessions on fullstack application development using modern Java & JavaScript Frameworks."
     },
     {
         role: "Subject Matter Expert (Web Development)",
         company: "Straive",
-        duration: "September 2023 - April 2025",
+        duration: "September 2023 - April 2025 (Full-time)",
         desc: "I work on developing and maintaining the frontend and backend of the company's web applications using modern JavaScript frameworks."
     },
     {
         role: "Programming Trainer",
-        company: "Informatics",
-        duration: "April 2022 - June 2022",
+        company: "Informatics Training Institute",
+        duration: "April 2022 - June 2022 (Part-time)",
         desc: "Delivered student-centric training sessions on programming languages with hands-on projects."
     }
 ];
